@@ -57,7 +57,6 @@ const translations = {
 
 if (weatherDiv) weatherDiv.style.display = "none";
 
-// App load hote hi auto location check karega
 window.addEventListener("DOMContentLoaded", () => {
   autoDetectLocation();
 });
@@ -120,10 +119,9 @@ function autoDetectLocation() {
         console.error("Geolocation error details:", error);
         alert(translations[currentLang].geoError + " Please search manually.");
         if (skeletonLoader) skeletonLoader.style.display = "none";
-        // Loader hata kar London default dikha dega takay app responsive rahay
         if (weatherDiv) weatherDiv.style.display = "block";
       },
-      { enableHighAccuracy: true, timeout: 10000 } // High accuracy filters
+      { enableHighAccuracy: true, timeout: 10000 } 
     );
   } else {
     alert(translations[currentLang].geoUnsupported);
@@ -234,7 +232,6 @@ async function getWeather(cityOverride) {
       input.value = data.location.name;
     }
 
-    // FIX: Agar condition dict me na ho, toh crash hone ke bajaye direct API ka text dikha dega
     const apiCondition = data.current.condition.text;
     if (elCond) {
       if (selectedLabels && selectedLabels[apiCondition]) {
@@ -260,7 +257,6 @@ async function getWeather(cityOverride) {
       weatherDiv.style.direction = "ltr";
     }
 
-    // Loader ko end par hide karna taake data display ho chuka ho
     if (skeletonLoader) skeletonLoader.style.display = "none";
     if (weatherDiv) weatherDiv.style.display = "block";
 
